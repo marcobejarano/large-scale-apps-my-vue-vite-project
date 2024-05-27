@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ItemInterface } from '@/models';
+import ItemComponent from './children/Item.component.vue';
 
 defineProps<{ items: ItemInterface[] }>();
 
@@ -7,8 +8,8 @@ const emit = defineEmits<{
   (e: 'selectItem', id: number): any
 }>();
 
-const handleClick = (item: ItemInterface) => {
-  emit('selectItem', item.id);
+const onSelectItem = (id: number) => {
+  emit('selectItem', id);
 }
 </script>
 
@@ -16,13 +17,25 @@ const handleClick = (item: ItemInterface) => {
   <div>
     <h3>Items:</h3>
     <ul>
-      <li 
+      <ItemComponent
         v-for="(item, index) in items"
         :key="item.id"
-        @click="handleClick(item)"
+        :model="item"
+        @selectItem="onSelectItem"
       >
         {{ item.name }} [{{ item.selected }}]
-      </li>
+      </ItemComponent>
     </ul>
   </div>
 </template>
+
+<style>
+  ul {
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+  }
+</style>
