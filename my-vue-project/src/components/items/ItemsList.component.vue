@@ -1,5 +1,7 @@
 <script setup lang="ts">
-  defineProps<{ items: any[] }>()
+import type { ItemInterface } from '@/models';
+
+  defineProps<{ items: ItemInterface[] }>()
 </script>
 
 <template>
