@@ -6,7 +6,7 @@ import {
 
 const options: ItemsApiClientOptions = {
   endpoints: {
-    fetchItems: '/path/to/your/real/api/end-point'
+    fetchItems: '/static/mock-data/items/items.json'
   },
   mockDelay: 1000
 };
