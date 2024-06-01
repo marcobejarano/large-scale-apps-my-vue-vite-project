@@ -1,3 +1,4 @@
+import { config } from "@/config";
 import { 
   HttpClientAxios,
   HttpclientFetch,
@@ -8,7 +9,7 @@ let _httpClient: HttpClientInterface | undefined = undefined;
 
 export const useHttpClient = () => {
   if (!_httpClient) {
-    const clientType = 'fetch';
+    const clientType = config.httpClient.clientType;
     
     if (clientType === 'fetch') {
       _httpClient = new HttpclientFetch();

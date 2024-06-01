@@ -1,16 +1,11 @@
 import { apiLiveClient } from "./live";
 import { apiMockClient } from "./mock";
 import type { ApiClientInterface } from "./models/ApiClient.interface";
-
-let env: string = 'mock';
-
-if (import.meta.env && import.meta.env.VITE_API_CLIENT) {
-  env = import.meta.env.VITE_API_CLIENT.trim();
-}
+import { config } from "@/config";
 
 let apiClient: ApiClientInterface;
 
-if (env === 'live') {
+if (config.apiClient.type === 'live') {
   apiClient = apiLiveClient;
 } else {
   // Default is always apiMockClient
